@@ -1,0 +1,14 @@
+<launch>
+  <!-- Static transform from "vectornav" to "base_link" -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="vectornav_to_base_link" args="0 0 0 0 0 0 vectornav base_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_vectornav" args="0 0 0 0 0 0 base_link vectornav" />
+
+  <!-- Launching ekf_localization_node -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="robot_localization_local" clear_params="true">
+    <rosparam command="load" file="$(find robot_localization)/params/local_odom.yaml" />
+
+    <!-- Placeholder for output topic remapping -->
+    <remap from="odometry/filtered" to="/odometry/local"/>
+    <remap from="accel/filtered" to="/accel/local"/>
+  </node>
+</launch>

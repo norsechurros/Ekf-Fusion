@@ -44,4 +44,4 @@ wait_for_datum: false
 # Instead of using the first GPS location and IMU-based heading for the local-frame origin, users can specify the
 # origin (datum) using this parameter. The fields in the parameter represent latitude and longitude in decimal degrees,
 # and heading in radians. As navsat_transform_node assumes an ENU standard, a 0 heading corresponds to east.
-# datum: [13.347611, 74.792208, 1.4125365]
+ datum: [13.347611, 74.792208, 1.4125365]

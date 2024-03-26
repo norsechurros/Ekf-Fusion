@@ -25,7 +25,7 @@ def parse_nmea(sentence):
 def gps_reader():
     rospy.init_node('gps_reader', anonymous=True)
     pub = rospy.Publisher('gps_data', NavSatFix, queue_size=10)
-    serial_port = serial.Serial('/dev/ttyUSB1', 38400)  # Update with your GPS device serial port and baudrate
+    serial_port = serial.Serial('/dev/ttyACM0', 38400)  # Update with your GPS device serial port and baudrate
 
     while not rospy.is_shutdown():
         try:

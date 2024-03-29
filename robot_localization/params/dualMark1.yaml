@@ -3,7 +3,7 @@
 ekf_se_odom:
   frequency: 30
   sensor_timeout: 0.1
-  two_d_mode: false
+  two_d_mode: true
   transform_time_offset: 0.0
   transform_timeout: 0.0
   print_diagnostics: true
@@ -107,16 +107,27 @@ ekf_se_map:
   odom0_differential: false
   odom0_relative: false
 
-  odom1: odometry/gps
-  odom1_config: [true,  true,  false,
+  odom1: odometry/zed2i
+  odom0_config: [false, false, false,
+                 false, false, false,
+                 true,  true,  true,
+                 false, false, true,
+                 false, false, false]
+  odom0_queue_size: 10
+  odom0_nodelay: true
+  odom0_differential: false
+  odom0_relative: false
+
+  odom2: odometry/gps
+  odom2_config: [true,  true,  false,
                  false, false, false,
                  false, false, false,
                  false, false, false,
                  false, false, false]
-  odom1_queue_size: 10
-  odom1_nodelay: true
-  odom1_differential: false
-  odom1_relative: false
+  odom2_queue_size: 10
+  odom2_nodelay: true
+  odom2_differential: false
+  odom2_relative: false
 
   imu0: imu/data
   imu0_config: [false, false, false,

@@ -65,10 +65,11 @@ permit_corrected_publication: false
 #     3b. MAKE SURE something else is generating the odom->base_link transform. Note that this can even be another state
 #         estimation node from robot_localization! However, that instance should *not* fuse the global data.
 map_frame: map  tamped,
-# sensor_msgs/Imu). To add an input, simply append th            # Defaults to "map" if unspecified
-odom_frame: odom            # Defaults to "odom" if unspecified
-base_link_frame: base_link  # Defaults to "base_link" if unspecified
-world_frame: odom           # Defaults to the value of odom_frame if unspecified
+# sensor_msgs/Imu). To add an input, simply append the            
+# Defaults to "map" if unspecified
+odom_frame: robot/odom            # Defaults to "odom" if unspecified
+base_link_frame: robot/base_link  # Defaults to "base_link" if unspecified
+world_frame: map                  # Defaults to the value of odom_frame if unspecified  
 
 # The filter accepts an arbitrary number of inputs from each input message type (nav_msgs/Odometry,
 # geometry_msgs/PoseWithCovarianceStamped, geometry_msgs/TwistWithCovarianceSe next number in the sequence to its "base" name, e.g., odom0,
@@ -79,7 +80,7 @@ world_frame: odom           # Defaults to the value of odom_frame if unspecified
 #--------------------------1st ODOM---------------------------------------------------------------------------------------
 ##########################################################################################################################
 
-odom0: /Lidar/Odom
+odom0: dlo/odom_node/odom
 
 # Each sensor reading updates some or all of the filter's state. These options give you greater control over which
 # values from each measurement are fed to the filter. For example, if you have an odometry message as input, but only
@@ -132,7 +133,7 @@ odom0_twist_rejection_threshold: 1
 #--------------------------2nd ODOM---------------------------------------------------------------------------------------
 ##########################################################################################################################
 
-odom1: /Zed2i/Odom
+odom1: /zed2i/zed_node/odom
 
 # The order of the values is 
 
@@ -189,7 +190,7 @@ odom1_twist_rejection_threshold: 1
 #--------------------------3rd ODOM---------------------------------------------------------------------------------------
 ##########################################################################################################################
 
-odom2: /Wheel/Odom
+odom2: /odom
 
 # The order of the values is 
 
@@ -203,9 +204,9 @@ odom2: /Wheel/Odom
 # has no pose information, so the first six values would be meaningless in that case. Each vector defaults to all false
 # if unspecified, effectively making this parameter required for each sensor.
 odom2_config: [true,  true,  false,
-               false, false, true,
+               false, false, false,
                true, true, false,
-               false, false, true,
+               false, false, false,
                false, false, false]
 
 # If you have high-frequency data or are running with a low frequency parameter value, then you may want to increase

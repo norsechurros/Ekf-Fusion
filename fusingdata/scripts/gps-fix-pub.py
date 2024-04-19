@@ -43,7 +43,7 @@ def gps_reader():
                 fix.status.service = 0
                 fix.latitude = lat
                 fix.longitude = lon
-                fix.altitude = 0.0  # Update with actual altitude if available
+                fix.altitude = 0.0                  # Update with actual altitude if available
                 fix.position_covariance = [0.0] * 9  # Update with actual covariance if available
                 fix.position_covariance_type = 0
                 pub.publish(fix)

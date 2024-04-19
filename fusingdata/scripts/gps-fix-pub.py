@@ -45,7 +45,11 @@ def gps_reader():
                 fix.longitude = lon
                 fix.altitude = 0.0                  # Update with actual altitude if available
                 fix.position_covariance = [0.0] * 9  # Update with actual covariance if available
-                fix.position_covariance_type = 0
+                fix.position_covariance = [9, 0, 0, 
+                                           0, 9, 0, 
+                                           0, 0, 9]
+                # fix.position_covariance_type = 0        # 0 - Unknown, 1 - Approximated, 2 - Only Diagonal Known
+                fix.position_covariance_type = NavSatFix.COVARIANCE_TYPE_DIAGONAL_KNOWN
                 pub.publish(fix)
                 rospy.loginfo("Published GPS data - Latitude: {}, Longitude: {}".format(lat, lon))
         except Exception as e:
